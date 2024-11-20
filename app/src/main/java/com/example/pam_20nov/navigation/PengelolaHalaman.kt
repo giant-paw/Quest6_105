@@ -37,7 +37,7 @@ fun MahasiswaApp(
         ){
             SplashView (
                 onMulaiButton = {
-
+                    navController.navigate(Halaman.Mahasiswa.name)
             })
         }
 
