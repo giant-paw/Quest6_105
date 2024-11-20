@@ -2,6 +2,7 @@ package com.example.pam_20nov.ui.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,10 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pam_20nov.R
+import com.example.pam_20nov.model.Mahasiswa
 
-@Preview(showBackground = true)
 @Composable
 fun RencanaStudyView(
+    mahasiswa: Mahasiswa,
+    onSubmitbutton: (MutableList<String>) -> Unit,
+    onBackButtonClicked: () -> Unit
 ){
 
     Column (
@@ -42,6 +46,22 @@ fun RencanaStudyView(
             )
 
             Spacer(modifier = Modifier.padding(start = 30.dp))
+
+            Column {
+                Text(
+                    text = mahasiswa.nama,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Text(
+                    text = mahasiswa.nim,
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
         }
     }
