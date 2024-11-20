@@ -35,6 +35,7 @@ import androidx.core.provider.FontsContractCompat.Columns
 import com.example.pam_20nov.R
 import com.example.pam_20nov.data.RuangKelas
 import com.example.pam_20nov.model.Mahasiswa
+import com.example.pam_20nov.widget.DynamicSelectedField
 
 @Composable
 fun RencanaStudyView(
@@ -110,6 +111,8 @@ fun RencanaStudyView(
                 )
 
                 Spacer(modifier = Modifier.padding(16.dp))
+
+                DynamicSelectedField()
 
 
                 Row (
