@@ -15,24 +15,27 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.data.EmptyGroup.data
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.provider.FontsContractCompat.Columns
 import com.example.pam_20nov.R
+import com.example.pam_20nov.data.MataKuliah
 import com.example.pam_20nov.data.RuangKelas
 import com.example.pam_20nov.model.Mahasiswa
 import com.example.pam_20nov.widget.DynamicSelectedField
@@ -42,6 +45,16 @@ fun RencanaStudyView(
     mahasiswa: Mahasiswa,
     onbackbuttonClicked: () -> Unit,
 ){
+    var chosenDropdown by remember {
+        mutableStateOf(
+            ""
+        )
+    }
+
+    var checked by remember { mutableStateOf(false) }
+    var pilihanKelas by remember {
+        mutableStateOf("")
+    }
 
 
     Column (
@@ -110,15 +123,35 @@ fun RencanaStudyView(
                     fontWeight = FontWeight.Light
                 )
 
-                Spacer(modifier = Modifier.padding(16.dp))
+                Spacer(modifier = Modifier.padding(8.dp))
 
-                DynamicSelectedField()
+                DynamicSelectedField(
+                    selectedValue = chosenDropdown,
+                    options = MataKuliah.options,
+                    label = "Mata Kuliah",
+                    onValueChangedEvent = {
+                        chosenDropdown = it
+                    }
+                )
+
+                Spacer(modifier = Modifier.padding(8.dp))
+                HorizontalDivider()
+                Spacer(modifier = Modifier.padding(8.dp))
 
 
                 Row (
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
+
+                    RuangKelas.kelas.forEach { data ->
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            RadioButton(
+                                selected = pilihanKelas == data,
+                                onClick = { pilihanKelas = data }
+                            )
+                        }
+                    }
 
                     Button(onClick = {onbackbuttonClicked()}) {
                         Text(text = "Kembali")
