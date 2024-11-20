@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -67,6 +68,7 @@ fun RencanaStudyView(
             .background(color = colorResource(id = R.color.primary))
     ){
         Row (modifier = Modifier
+            .fillMaxWidth()
             .padding(40.dp),
             verticalAlignment = Alignment.CenterVertically,
         ){
@@ -79,7 +81,7 @@ fun RencanaStudyView(
 
             Spacer(modifier = Modifier.padding(start = 30.dp))
 
-            Column {
+            Column (modifier = Modifier.weight(1f)) {
                 Text(
                     text = mahasiswa.nama,
                     color = Color.White,
@@ -97,7 +99,8 @@ fun RencanaStudyView(
             Box{
                 Icon(
                     imageVector = Icons.Filled.Notifications,
-                    contentDescription = ""
+                    contentDescription = "",
+                    tint =  Color.White
                 )
             }
         }
