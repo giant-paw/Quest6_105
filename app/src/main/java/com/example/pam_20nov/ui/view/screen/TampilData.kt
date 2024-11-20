@@ -31,7 +31,9 @@ import com.example.pam_20nov.model.RencanaStudi
 @Composable
 fun TampilView(
     mahasiswa: Mahasiswa,
-    krs: RencanaStudi
+    krs: RencanaStudi,
+    onbackbuttonClicked: () -> Unit,
+    onResetButtonClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -51,13 +53,13 @@ fun TampilView(
             )
             Spacer(modifier = Modifier.padding(start = 16.dp))
             Column {
-                Text(text = "Universitas Muhammadiyah Yogyakarta",
-                    color = Color.Red,
+                Text(text = "Data KRS Mahasiswa",
+                    color = Color.White,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
                 )
-                Text(text = "Unggul dan Islami",
-                    color = Color.Red,
+                Text(text = "Universitas Muhammadiyah Yogyakarta",
+                    color = Color.White,
                     fontWeight = FontWeight.Light
                 )
             }
@@ -95,8 +97,13 @@ fun TampilView(
                         fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
                         fontSize = 14.sp
                     )
-                }
-                Column {
+
+                    Text(
+                        text = "Email:",
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        fontSize = 14.sp
+                    )
+
                     Text(
                         text = mahasiswa.email,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
@@ -133,6 +140,23 @@ fun TampilView(
             }
             Spacer(modifier = Modifier.padding(16.dp))
 
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(onClick = {onbackbuttonClicked()}) {
+                    Text(text = "Kembali")
+                }
+
+                Button(onClick = {
+                    onResetButtonClicked()
+                }){
+                    Text(text = "Reset")
+                }
+            }
+
         }
+
+
     }
 }
