@@ -44,6 +44,7 @@ import com.example.pam_20nov.widget.DynamicSelectedField
 @Composable
 fun RencanaStudyView(
     mahasiswa: Mahasiswa,
+    onSubmitButton: (MutableList<String>) -> Unit,
     onbackbuttonClicked: () -> Unit,
 ){
     var chosenDropdown by remember {
@@ -56,6 +57,8 @@ fun RencanaStudyView(
     var pilihanKelas by remember {
         mutableStateOf("")
     }
+
+    var listData: MutableList<String> = mutableListOf(chosenDropdown, pilihanKelas)
 
 
     Column (
@@ -175,6 +178,8 @@ fun RencanaStudyView(
                     )
                 }
 
+                Spacer(modifier = Modifier.padding(8.dp))
+
                 Row (
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
@@ -183,6 +188,11 @@ fun RencanaStudyView(
                         Text(text = "Kembali")
                     }
 
+                   Button(onClick = {
+                       onSubmitButton(listData)
+                   }, enabled = checked) {
+                       Text(text = "Berikutnya")
+                   }
                 }
             }
         }
