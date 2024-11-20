@@ -11,20 +11,29 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.materialIcon
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.data.EmptyGroup.data
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.provider.FontsContractCompat.Columns
 import com.example.pam_20nov.R
+import com.example.pam_20nov.data.RuangKelas
 import com.example.pam_20nov.model.Mahasiswa
 
 @Composable
@@ -67,6 +76,12 @@ fun RencanaStudyView(
                     fontWeight = FontWeight.Bold
                 )
             }
+            Box{
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = ""
+                )
+            }
         }
 
         Box(modifier = Modifier
@@ -88,13 +103,20 @@ fun RencanaStudyView(
                     fontWeight = FontWeight.Bold
                 )
 
+                Text(
+                    text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
 
                 Spacer(modifier = Modifier.padding(16.dp))
+
 
                 Row (
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
+
                     Button(onClick = {onbackbuttonClicked()}) {
                         Text(text = "Kembali")
                     }
