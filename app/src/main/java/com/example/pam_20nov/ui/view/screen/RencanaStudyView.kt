@@ -122,7 +122,7 @@ fun RencanaStudyView(
                 )
 
                 Text(
-                    text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                    text = "Silahkan pilih mata kuliah yang anda inginkan",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light
                 )
@@ -142,18 +142,25 @@ fun RencanaStudyView(
                 HorizontalDivider()
                 Spacer(modifier = Modifier.padding(8.dp))
 
+                Text(
+                    text = "Silahkan pilih Kelas dari mata kuliah yang anda inginkan",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light
+                )
+
+                Spacer(modifier = Modifier.padding(8.dp))
 
                 Row (
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-
                     RuangKelas.kelas.forEach { data ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             RadioButton(
                                 selected = pilihanKelas == data,
                                 onClick = { pilihanKelas = data }
                             )
+                            Text(data)
                         }
                     }
                 }
